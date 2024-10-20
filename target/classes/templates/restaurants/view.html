@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Details</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>Restaurant Details</h1>
+    <nav>
+        <li><a href="/restaurants">Back to Restaurant List</a></li>
+    </nav>
+</header>
+
+<main>
+    <div>
+        <p><strong>ID:</strong> <span th:text="${restaurant.id}"></span></p>
+        <p><strong>Name:</strong> <span th:text="${restaurant.name}"></span></p>
+        <p><strong>Address:</strong> <span th:text="${restaurant.address}"></span></p>
+        <p><strong>Phone Number:</strong> <span th:text="${restaurant.phoneNumber}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${restaurant.email}"></span></p>
+        <p><strong>Description:</strong> <span th:text="${restaurant.description}"></span></p>
+        <p><strong>Owner:</strong> <span th:text="${restaurant.owner.name}"></span></p>
+        <h3>Menu Items:</h3>
+
+        <li th:each="item : ${restaurant.menuItems}" th:text="${item.name}"></li>
+    </div>
+</main>
+
+<footer>
+    <p></p>
+</footer>
+</body>
+</html>

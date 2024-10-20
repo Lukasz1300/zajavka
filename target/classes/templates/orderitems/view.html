@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegóły pozycji zamówienia</title>
+    <style>
+        h1 {
+            font-size: 2em; /* Zwiększenie rozmiaru czcionki nagłówka */
+            color: #333; /* Opcjonalny kolor nagłówka */
+        }
+    </style>
+</head>
+<body>
+<h1>Szczegóły pozycji zamówienia</h1> <!-- Dodanie nagłówka h1 -->
+<table>
+    <tbody>
+    <tr th:each="orderItem : ${orderItems}">
+        <td th:text="${orderItem.id}">id: 1</td>
+        <td th:text="${orderItem.menuItem != null ? orderItem.menuItem.name : 'N/A'}">Nazwa pozycji:</td>
+        <td th:text="${orderItem.quantity}">ilosc objetosc: 1</td>
+        <td th:text="${orderItem.price}">cena 10.00</td>
+        <td>
+            <a th:href="@{/order-items/{id}(id=${orderItem.id})}">Szczegóły</a>
+            <a th:href="@{/order-items/delete/{id}(id=${orderItem.id})}">Usuń</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/order-items">Powrót do listy</a>
+</body>
+</html>

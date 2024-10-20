@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create or Edit Order</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>Create or Edit Order</h1>
+    <nav>
+        <ul>
+            <li><a href="/orders">Back to Order List</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <form th:action="@{/orders}" th:object="${order}" method="post">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+
+        <!-- Zmienione z 'user.name' na 'user.username' -->
+        <label for="user">User:</label>
+        <input type="text" id="user" th:field="*{user.username}" required>
+
+        <!-- Restaurant jest poprawne, więc pozostaje bez zmian -->
+        <label for="restaurant">Restaurant:</label>
+        <input type="text" id="restaurant" th:field="*{restaurant.name}" required>
+
+        <label for="totalPrice">Total Price:</label>
+        <input type="number" id="totalPrice" th:field="*{totalPrice}" step="0.01" required>
+
+        <label for="deliveryAddress">Delivery Address:</label>
+        <input type="text" id="deliveryAddress" th:field="*{deliveryAddress}" required>
+
+        <!-- Zmienione z 'status' na 'orderStatus' -->
+        <label for="status">Status:</label>
+        <input type="text" id="status" th:field="*{orderStatus}" required>
+
+        <button type="submit">Save Order</button>
+    </form>
+</main>
+
+<footer>
+    <p></p>
+</footer>
+</body>
+</html>

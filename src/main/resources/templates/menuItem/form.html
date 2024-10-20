@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Menu Item</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link do własnego pliku CSS -->
+</head>
+<body>
+<header>
+    <h1>Add New Menu Item</h1>
+    <nav>
+        <ul>
+            <li><a href="/menu-items">Back to Menu Item List</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- Formularz dodawania nowej pozycji menu -->
+    <form th:action="@{/menu-items}" th:object="${menuItem}" method="post">
+        <!-- Nazwa pozycji menu -->
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" />
+            <!-- Wyświetlanie błędów walidacji dla pola "name" -->
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></div>
+        </div>
+
+        <!-- Opis pozycji menu -->
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" th:field="*{description}"></textarea>
+            <!-- Wyświetlanie błędów walidacji dla pola "description" -->
+            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red;"></div>
+        </div>
+
+        <!-- Cena pozycji menu -->
+        <div>
+            <label for="price">Price:</label>
+            <input type="number" id="price" th:field="*{price}" step="0.01" />
+            <!-- Wyświetlanie błędów walidacji dla pola "price" -->
+            <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color: red;"></div>
+        </div>
+
+        <!-- URL do obrazu -->
+        <div>
+            <label for="imageUrl">Image URL:</label>
+            <input type="text" id="imageUrl" th:field="*{imageUrl}" />
+            <!-- Wyświetlanie błędów walidacji dla pola "imageUrl" -->
+            <div th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" style="color: red;"></div>
+        </div>
+
+        <!-- Przycisk zapisz -->
+        <button type="submit">Save Menu Item</button>
+    </form>
+</main>
+
+<footer>
+    <p></p>
+</footer>
+</body>
+</html>

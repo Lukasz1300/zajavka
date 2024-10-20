@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista pozycji zamówienia</title>
+</head>
+<body>
+<h1>Lista pozycji zamówienia</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nazwa pozycji</th>
+        <th>Ilość</th>
+        <th>Cena</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="orderItem : ${orderItems}">
+        <td th:text="${orderItem.id}">1</td>
+        <td th:text="${orderItem.order != null && orderItem.order.user != null ? orderItem.order.user.username : 'Brak użytkownika'}">Brak użytkownika</td>
+        <td th:text="${orderItem.menuItem != null ? orderItem.menuItem.name: 'brak'}">Nazwa pozycji</td>
+        <td th:text="${orderItem.quantity}">1</td>
+        <td th:text="${orderItem.price}">10.00</td>
+        <td>
+            <a th:href="@{/order-items/{id}(id=${orderItem.id})}">Szczegóły</a>
+            <a th:href="@{/order-items/delete/{id}(id=${orderItem.id})}">Usuń</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/order-items/new">Dodaj nową pozycję zamówienia</a>
+</body>
+</html>

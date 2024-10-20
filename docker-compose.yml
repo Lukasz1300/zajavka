@@ -1,0 +1,24 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: projektzajavka2:latest
+    ports:
+      - "8085:8085"  # Mapowanie portu 8080 aplikacji na port 8085 na localhost
+    environment:
+      SPRING_PROFILES_ACTIVE: "docker"
+    depends_on:
+      - wiremock  # Aplikacja powinna czekać na uruchomienie WireMocka
+    networks:
+      - spring-boot-network
+
+  wiremock:
+    image: wiremock/wiremock:latest
+    networks:
+      - spring-boot-network
+    command: --verbose --local-response-templating
+
+networks:
+  spring-boot-network:
+    driver: bridge

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant List</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link do własnego pliku CSS -->
+</head>
+<body>
+<header>
+    <h1>Restaurant List</h1>
+    <nav>
+        <ul>
+            <li><a href="/restaurants/new">Create New Restaurant</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="restaurant : ${restaurants}">
+            <td th:text="${restaurant.id}"></td>
+            <td th:text="${restaurant.name}"></td>
+            <td th:text="${restaurant.address}"></td>
+            <td th:text="${restaurant.phoneNumber}"></td>
+            <td th:text="${restaurant.email}"></td>
+            <td>
+                <a th:href="@{/restaurants/{id}(id=${restaurant.id})}">View</a>
+                <form th:action="@{/restaurants/delete/{id}(id=${restaurant.id})}" method="post"
+                      onsubmit="return confirm('Are you sure you want to delete this restaurant?');">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer>
+    <p></p>
+</footer>
+</body>
+</html>

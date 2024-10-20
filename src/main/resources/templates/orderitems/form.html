@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Item Form</title>
+</head>
+<body>
+<h1>Dodaj/Edytuj pozycję zamówienia</h1>
+
+<!-- Wyświetlanie ogólnych komunikatów o błędach formularza -->
+<form th:action="@{/order-items}" th:object="${orderItem}" method="post">
+    <!-- Wyświetlanie błędów dla całego formularza -->
+    <div th:if="${#fields.hasGlobalErrors()}">
+            <li th:each="err : ${#fields.globalErrors()}">
+                <span th:text="${err}"></span>
+            </li>
+          </div>
+
+    <div>
+        <label for="menuItemSelect">Nazwa pozycji:</label>
+        <select id="menuItemSelect" th:field="*{menuItem.id}">
+            <option value="" disabled selected>Wybierz pozycję</option>
+            <option th:each="menuItem : ${menuItems}" th:value="${menuItem.id}" th:text="${menuItem.name}">Pozycja</option>
+        </select>
+        <!-- Wyświetlanie błędów dla pola menuItem -->
+        <div th:if="${#fields.hasErrors('menuItem')}">
+            <span th:errors="*{menuItem}" style="color: red;"></span>
+        </div>
+    </div>
+
+    <div>
+        <label for="quantityInput">Ilość:</label>
+        <input id="quantityInput" type="number" th:field="*{quantity}" min="1"/>
+        <!-- Wyświetlanie błędów dla pola quantity -->
+        <div th:if="${#fields.hasErrors('quantity')}">
+            <span th:errors="*{quantity}" style="color: red;"></span>
+        </div>
+    </div>
+
+    <div>
+        <label for="priceInput">Cena:</label>
+        <input id="priceInput" type="text" th:field="*{price}" readonly/>
+        <!-- Wyświetlanie błędów dla pola price -->
+        <div th:if="${#fields.hasErrors('price')}">
+            <span th:errors="*{price}" style="color: red;"></span>
+        </div>
+    </div>
+
+    <div>
+        <button type="submit">Zapisz</button>
+    </div>
+</form>
+
+<a href="/order-items">Powrót do listy</a>
+</body>
+</html>

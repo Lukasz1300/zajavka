@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Areas</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link do własnego pliku CSS -->
+</head>
+<body>
+<header>
+    <h1>Delivery Areas</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <!-- Dodaj inne linki nawigacyjne tutaj -->
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h2>Delivery Areas for Restaurant</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Street Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="deliveryArea : ${deliveryAreas}">
+            <td th:text="${deliveryArea.id}"></td>
+            <td th:text="${deliveryArea.streetName}"></td>
+            <td>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer>
+    <p></p>
+</footer>
+</body>
+</html>

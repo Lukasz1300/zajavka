@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Form</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link do własnego pliku CSS -->
+</head>
+<body>
+<header>
+    <h1>Category Form</h1>
+    <nav>
+        <ul>
+            <li><a href="/categories">Back to Category List</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <form th:action="@{/categories}" th:object="${category}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" />
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        </div>
+        <button type="submit">Save Category</button>
+    </form>
+</main>
+
+<footer>
+    <p></p>
+</footer>
+</body>
+</html>

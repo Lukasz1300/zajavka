@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegóły użytkownika</title>
+</head>
+<body>
+<h1>Szczegóły użytkownika</h1>
+<p><strong>ID:</strong> <span th:text="${user.id}"></span></p>
+<p><strong>Username:</strong> <span th:text="${user.username}"></span></p>
+<p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+<p><strong>Imię:</strong> <span th:text="${user.firstName}"></span></p>
+<p><strong>Nazwisko:</strong> <span th:text="${user.lastName}"></span></p>
+<p><strong>Telefon:</strong> <span th:text="${user.phoneNumber}"></span></p>
+<p><strong>Adres:</strong> <span th:text="${user.address}"></span></p>
+<p><strong>Data utworzenia:</strong> <span th:text="${user.createdAt}"></span></p>
+
+<a th:href="@{/users/edit/{id}(id=${user.id})}">Edytuj</a> |
+<a href="/users">Powrót do listy</a>
+</body>
+</html>
